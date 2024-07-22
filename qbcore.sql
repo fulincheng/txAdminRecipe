@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS `apartments` (
   `type` VARCHAR(255) DEFAULT NULL,
   `label` VARCHAR(255) DEFAULT NULL,
   `citizenid` VARCHAR(11) DEFAULT NULL,
-  KEY `citizenid` `citizenid`,
-  KEY `name` `name`
+  ADD KEY `citizenid` (`citizenid`),
+  ADD KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `bank_accounts` (
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `bank_accounts` (
   `account_type` ENUM('shared','job','gang') NOT NULL,
   `users` LONGTEXT DEFAULT ('[]'),
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `account_name` (`account_name`)
+  UNIQUE ADD KEY `account_name` (`account_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `bank_statements` (
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `bank_statements` (
   `statement_type` ENUM('deposit','withdraw') DEFAULT NULL,
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `citizenid` (`citizenid`)
+  ADD KEY `citizenid` (`citizenid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `bans` (
@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS `bans` (
   `expire` INT(11) DEFAULT NULL,
   `bannedby` VARCHAR(255) NOT NULL DEFAULT 'LeBanhammer',
   PRIMARY KEY (`id`),
-  KEY `license` (`license`),
-  KEY `discord` (`discord`),
-  KEY `ip` (`ip`)
+  ADD KEY `license` (`license`),
+  ADD KEY `discord` (`discord`),
+  ADD KEY `ip` (`ip`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `crypto` (
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `crypto_transactions` (
   `message` VARCHAR(50) DEFAULT NULL,
   `date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id`),
-  KEY `citizenid` (`citizenid`)
+  ADD KEY `citizenid` (`citizenid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `dealers` (
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `houselocations` (
   `tier` TINYINT(4) DEFAULT NULL,
   `garage` TEXT DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `name` (`name`)
+  ADD KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_houses` (
@@ -96,9 +96,9 @@ CREATE TABLE IF NOT EXISTS `player_houses` (
   `outfit` TEXT DEFAULT NULL,
   `logout` TEXT DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `house` (`house`),
-  KEY `citizenid` (`citizenid`),
-  KEY `identifier` (`identifier`)
+  ADD KEY `house` (`house`),
+  ADD KEY `citizenid` (`citizenid`),
+  ADD KEY `identifier` (`identifier`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `house_plants` (
@@ -113,8 +113,8 @@ CREATE TABLE IF NOT EXISTS `house_plants` (
   `coords` TEXT DEFAULT NULL,
   `plantid` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `building` (`building`),
-  KEY `plantid` (`plantid`)
+  ADD KEY `building` (`building`),
+  ADD KEY `plantid` (`plantid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `lapraces` (
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `lapraces` (
   `distance` INT(11) DEFAULT NULL,
   `raceid` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `raceid` (`raceid`)
+  ADD KEY `raceid` (`raceid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `occasion_vehicles` (
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `occasion_vehicles` (
   `mods` TEXT DEFAULT NULL,
   `occasionid` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `occasionId` (`occasionid`)
+  ADD KEY `occasionId` (`occasionid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `phone_invoices` (
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `phone_invoices` (
   `sender` VARCHAR(50) DEFAULT NULL,
   `sendercitizenid` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `citizenid` (`citizenid`)
+  ADD KEY `citizenid` (`citizenid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `phone_gallery` (
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `player_mails` (
   `date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
   `button` TEXT DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `citizenid` (`citizenid`)
+  ADD KEY `citizenid` (`citizenid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `phone_messages` (
@@ -179,8 +179,8 @@ CREATE TABLE IF NOT EXISTS `phone_messages` (
   `number` VARCHAR(50) DEFAULT NULL,
   `messages` TEXT DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `citizenid` (`citizenid`),
-  KEY `number` (`number`)
+  ADD KEY `citizenid` (`citizenid`),
+  ADD KEY `number` (`number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `phone_tweets` (
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `phone_tweets` (
   `picture` VARCHAR(512) DEFAULT './img/default.png',
   `tweetId` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `citizenid` (`citizenid`)
+  ADD KEY `citizenid` (`citizenid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_contacts` (
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `player_contacts` (
   `number` VARCHAR(50) DEFAULT NULL,
   `iban` VARCHAR(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `citizenid` (`citizenid`)
+  ADD KEY `citizenid` (`citizenid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `players` (
@@ -222,9 +222,9 @@ CREATE TABLE IF NOT EXISTS `players` (
   `inventory` LONGTEXT DEFAULT NULL,
   `last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
   PRIMARY KEY (`citizenid`),
-  KEY `id` (`id`),
-  KEY `last_updated` (`last_updated`),
-  KEY `license` (`license`)
+  ADD KEY `id` (`id`),
+  ADD KEY `last_updated` (`last_updated`),
+  ADD KEY `license` (`license`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `playerskins` (
@@ -234,8 +234,8 @@ CREATE TABLE IF NOT EXISTS `playerskins` (
   `skin` TEXT NOT NULL,
   `active` TINYINT(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
-  KEY `citizenid` (`citizenid`),
-  KEY `active` (`active`)
+  ADD KEY `citizenid` (`citizenid`),
+  ADD KEY `active` (`active`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_outfits` (
@@ -246,8 +246,8 @@ CREATE TABLE IF NOT EXISTS `player_outfits` (
   `skin` TEXT DEFAULT NULL,
   `outfitId` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `citizenid` (`citizenid`),
-  KEY `outfitId` (`outfitId`)
+  ADD KEY `citizenid` (`citizenid`),
+  ADD KEY `outfitId` (`outfitId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_vehicles` (
@@ -272,9 +272,9 @@ CREATE TABLE IF NOT EXISTS `player_vehicles` (
   `paymentsleft` INT(11) NOT NULL DEFAULT 0,
   `financetime` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  KEY `plate` (`plate`),
-  KEY `citizenid` (`citizenid`),
-  KEY `license` (`license`)
+  ADD KEY `plate` (`plate`),
+  ADD KEY `citizenid` (`citizenid`),
+  ADD KEY `license` (`license`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `player_warns` (
@@ -291,5 +291,5 @@ CREATE TABLE IF NOT EXISTS `inventories` (
   `identifier` VARCHAR(50) NOT NULL,
   `items` LONGTEXT DEFAULT ('[]'),
   PRIMARY KEY (`identifier`),
-  KEY `id` (`id`)
+  ADD KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
