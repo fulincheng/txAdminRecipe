@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `apartments` (
   `label` VARCHAR(255) DEFAULT NULL,
   `citizenid` VARCHAR(11) DEFAULT NULL,
   KEY `citizenid` `citizenid`,
-  KEY `name` (`name`)
+  KEY `name` `name`
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `bank_accounts` (
